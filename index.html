@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Princess Paws Pet Boutique</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <section id="view-login" class="screen active">
+        <div class="logo-area">
+            <img src="logo.png" alt="Princess Paws Logo" class="main-logo">
+        </div>
+        <h1>Login</h1>
+        <p class="subtitle">Sign in to your account</p>
+        
+        <form id="login-form">
+            <div class="input-group">
+                <input type="text" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Password" required>
+            </div>
+            <a href="#" class="forgot-pass">Forgot your password? Click Here</a>
+            
+            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="button" class="btn btn-secondary">Sign up</button>
+        </form>
+
+        <div class="social-login">
+            <p>Or maybe login with:</p>
+            <div class="social-icons">
+                <span>G</span> <span>F</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="view-selection" class="screen hidden">
+        <img src="logo.png" alt="Princess Paws Logo" class="small-logo">
+        <h2>Welcome!</h2>
+        <p class="subtitle">Please choose your type of pet</p>
+
+        <div class="pet-selector">
+            <div class="pet-option" onclick="app.showCatalog('dog')">
+                <div class="circle-img dog-img"></div>
+                <h3>Dog</h3>
+            </div>
+            <div class="pet-option" onclick="app.showCatalog('cat')">
+                <div class="circle-img cat-img"></div>
+                <h3>Cat</h3>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="app.navigate('view-login')">Back to Login</button>
+
+        <footer class="info-footer">
+            <p>We are working on designing costumes for many other types of pets...</p>
+        </footer>
+    </section>
+
+    <section id="view-catalog" class="screen hidden">
+        <div class="header-blue">
+            <h2 id="catalog-title">DOG COSTUMES!</h2>
+            <div class="cart-icon" onclick="app.showCart()">
+                🛒 <span id="cart-count">0</span>
+            </div>
+        </div>
+        
+        <div class="catalog-content">
+            <h3 class="red-text">Top Sellers!!</h3>
+            
+            <div class="products-grid" id="products-container">
+                </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="app.navigate('view-selection')">Go back</button>
+                <button class="btn btn-secondary" onclick="app.navigate('view-customize')">Customize Costume</button>
+            </div>
+
+            <footer class="info-footer dark">
+                <p>Click on a product to add it to your cart!</p>
+            </footer>
+        </div>
+    </section>
+
+    <section id="view-cart" class="screen hidden">
+        <div class="header-blue">
+            <h2>Your Cart</h2>
+        </div>
+        
+        <div id="cart-items-container" class="cart-list">
+            <p>Your cart is empty.</p>
+        </div>
+
+        <div class="cart-total">
+            <h3>Total: <span id="cart-total">$0</span></h3>
+        </div>
+
+        <button class="btn btn-primary" onclick="alert('Proceeding to payment gateway...')">Checkout</button>
+        <button class="btn btn-secondary" onclick="app.navigate('view-catalog')">Keep Shopping</button>
+    </section>
+
+    <section id="view-customize" class="screen hidden">
+        <div class="header-blue">
+            <h2>Customize!</h2>
+        </div>
+        
+        <p class="subtitle">Create a unique style for your pet</p>
+
+        <form onsubmit="event.preventDefault(); alert('Request sent!'); app.navigate('view-catalog');">
+            <div class="input-group">
+                <input type="text" placeholder="Pet's Name" required>
+            </div>
+            <div class="input-group">
+                <label style="display:block; text-align:left; padding-left:15px; color:#666; margin-bottom:5px;">Pick a color:</label>
+                <input type="color" style="height:50px; padding:0;">
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="Special Request (e.g., extra glitter)">
+            </div>
+            <button class="btn btn-primary">Send Request</button>
+            <button type="button" class="btn btn-secondary" onclick="app.navigate('view-catalog')">Cancel</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
