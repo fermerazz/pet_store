@@ -15,10 +15,10 @@ const productsData = {
 };
 
 const app = {
-    cart: [], 
+    cart: [],
 
     navigate: (screenId) => {
-        window.scrollTo(0, 0); 
+        window.scrollTo(0, 0);
         document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
 
@@ -32,7 +32,7 @@ const app = {
         const container = document.getElementById('products-container');
         container.innerHTML = '';
 
-        
+
         app.currentType = type;
 
         title.innerText = type === 'dog' ? 'DOG COSTUMES!' : 'CAT COSTUMES!';
@@ -40,7 +40,7 @@ const app = {
 
         items.forEach(item => {
             const itemString = JSON.stringify(item).replace(/"/g, '&quot;');
-            
+
             const productHTML = `
                 <div class="product-card" onclick="app.addToCart(${itemString})">
                     <img src="${item.img}" alt="${item.name}">
@@ -67,14 +67,14 @@ const app = {
     showCart: () => {
         const container = document.getElementById('cart-items-container');
         const totalElem = document.getElementById('cart-total');
-        
+
         if (app.cart.length === 0) {
             container.innerHTML = "<p>Your cart is empty :(</p>";
             totalElem.innerText = "$0";
         } else {
             container.innerHTML = '';
             let total = 0;
-            
+
             app.cart.forEach((item, index) => {
                 total += item.price;
                 container.innerHTML += `
@@ -94,14 +94,25 @@ const app = {
     },
 
     removeFromCart: (index) => {
-        app.cart.splice(index, 1); 
+        app.cart.splice(index, 1);
         app.updateCartCount();
-        app.showCart(); 
+        app.showCart();
     }
 };
 
 
 document.getElementById('login-form').addEventListener('submit', (e) => {
     e.preventDefault();
-    app.navigate('view-selection');
+
+    // Get inputs from the form
+    const inputs = e.target.querySelectorAll('input');
+    // Assuming first input is username/email and second is password
+    const username = inputs[0] ? inputs[0].value.trim() : '';
+    const password = inputs[1] ? inputs[1].value.trim() : '';
+
+    if (username === 'admin' && password === 'admin') {
+        app.navigate('view-selection');
+    } else {
+        alert('Credentials invalid. Please try again.');
+    }
 });
