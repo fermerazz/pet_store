@@ -104,9 +104,8 @@ const app = {
 document.getElementById('login-form').addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Get inputs from the form
+
     const inputs = e.target.querySelectorAll('input');
-    // Assuming first input is username/email and second is password
     const username = inputs[0] ? inputs[0].value.trim() : '';
     const password = inputs[1] ? inputs[1].value.trim() : '';
 
